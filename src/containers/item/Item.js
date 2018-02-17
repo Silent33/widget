@@ -3,21 +3,24 @@ import {Card, CardHeader} from 'material-ui/Card';
 import Divider from 'material-ui/Divider';
 
 const cardHeaderStyleTitle = {
-    cursor: 'pointer',
+    cursor: 'text',
     width: '300px',
     justifyContent: 'space-between',
     fontWeight: 'bold',
     height: 'auto',
     wordWrap: 'break-word',
-    borderRight: '2px solid #ccc'
+    padding: '10px'
 };
 const cardHeaderStylePrice = {
-    cursor: 'pointer',
+    fontFamily: 'Roboto',
+    cursor: 'text',
     width: '100px',
     justifyContent: 'space-between',
     fontWeight: 'bold',
     height: 'auto',
     wordWrap: 'break-word',
+    borderLeft: '2px solid #ccc',
+    padding: '10px'
 };
 
 const cardStyle = {

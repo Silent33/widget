@@ -1,8 +1,14 @@
-const getItems = () => {
+const getItems = (sort , reverseSort) => {
     let items = []
     for (var i = 0, len = localStorage.length; i < len; ++i) {
-        items.push(JSON.parse(localStorage.getItem(localStorage.key( i ))));
-      }
+        items.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+    }
+    if(sort) {
+       items.sort((a,b) => {return (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0);} ); 
+    }
+    if(reverseSort) {
+       items.sort((a,b) => {return (a.title < b.title) ? 1 : ((b.title < a.title) ? -1 : 0);} );
+    }
     return items;
 };
 
@@ -16,17 +22,17 @@ const setItem = (counter, title, price) => {
     localStorage.setItem(counter, itemsString)
 }
 
-const getComments = (itemId) => {
-    let itemObject = JSON.parse(localStorage.getItem(itemId))
-    return itemObject? itemObject['comments']:[]
-}
-
-const postComment = (itemId, commentText) => {
-    let itemObject = JSON.parse(localStorage.getItem(itemId))
-    if (itemObject) {
-    JSON.stringify(itemObject['comments'].push(commentText))
-    localStorage.setItem(itemId, JSON.stringify(itemObject))
+const totalPrice = () => {
+    let items = []
+    for (var i = 0, len = localStorage.length; i < len; ++i) {
+        items.push(JSON.parse(localStorage.getItem(localStorage.key(i))).price);
     }
+    let sum = 0;
+    for (let i = 0; i < items.length; i++) {
+        sum += parseFloat(items[i]);
+    }
+    return sum;
+
 }
 
-export {getItems, setItem, getComments, postComment}; 
+export {getItems, setItem, totalPrice}; 
